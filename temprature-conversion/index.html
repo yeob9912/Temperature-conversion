@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temprature-conversion</title>
+</head>
+<style>
+    body{
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+    .continare{
+        border: solid 2px rgb(255, 255, 255);
+        background-color: rgb(240, 253, 255) ;
+        width: 80vh;
+        height: 90vh;
+        border-radius: 10px;
+    }
+    #form{
+        justify-content: center;
+        align-items: center;
+        padding: 50px;
+        padding-left: 90px;
+        padding-top: 40px;
+        font-size: 1em;
+    }
+    
+</style>
+<body>
+    <div class="continare">
+        <form id="form">
+        <p style="font-size: 1.5em;">Temprature Conversion:</p>
+        <input style="font-size: larger; width: 40vh; " type="text" id="display"><br><br>
+        <input id="toFahrenheit" type="radio"  name="button" >
+        <label for="toFahrenheit">Celsius => Fahrenheit</label><br><br>
+        <input id="toCelsius" type="radio" name="button">
+        <label for="toCelsius">Fahrenheit => Celsius</label><br><br>
+        <input  style="margin-left: 10vh; font-size: larger; background-color: blueviolet; border-radius: 5px;" type="Submit" value="submit" id="submit">
+        <p id="result" style="margin-left: 40px; font-size: larger;"></p>
+        </form>
+    </div>
+    <script>
+     let display=document.getElementById("display");
+     let toFahrenheit=document.getElementById("toFahrenheit");
+     let toCelsius=document.getElementById("toCelsius");
+     let submit=document.getElementById("submit");
+     let result=document.getElementById("result");
+     let temp;
+     submit.onclick=function(event){
+        event.preventDefault();
+        let temp =Number(display.value);
+        if (isNaN(temp)) {
+        result.textContent = "Enter a valid number";
+        return;
+      }
+        if(toFahrenheit.checked){
+         result.textContent=((temp*9/5) +32 ).toFixed(2)  + " °F" ;
+        }
+        else if(toCelsius.checked){
+            result.textContent=((temp- 32) * (5/9)).toFixed(2) + " °C";
+        }
+        else{
+            result.textContent='please select conversion ';
+        }
+     }
+     
+    </script>
+</body>
+</html>
