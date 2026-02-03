@@ -1,70 +1,169 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temprature-conversion</title>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temperature Conversion</title>
 <style>
-    body{
-        justify-content: center;
-        align-items: center;
-        display: flex;
-    }
-    .continare{
-        border: solid 2px rgb(255, 255, 255);
-        background-color: rgb(240, 253, 255) ;
-        width: 80vh;
-        height: 90vh;
-        border-radius: 10px;
-    }
-    #form{
-        justify-content: center;
-        align-items: center;
-        padding: 50px;
-        padding-left: 90px;
-        padding-top: 40px;
-        font-size: 1em;
-    }
-    
+  /* ===== RESET ===== */
+  * {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+  }
+
+  html, body {
+    width:100%;
+    min-height:100%;
+    background: linear-gradient(135deg,#6a11cb,#2575fc);
+    transition: background 0.5s ease;
+  }
+
+  
+
+  /* ===== CENTERED CONTAINER ===== */
+  .container {
+    max-width: 400px;
+    width: 90%;
+    margin: 50px auto; /* auto center horizontally */
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    padding: 30px 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    transition: background 0.5s ease, color 0.5s ease;
+  }
+
+  body.dark .container { background: rgba(30,30,30,0.9); color:#fff; }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    color: #333;
+  }
+
+  body.dark h2 { color:#fff; }
+
+  /* ===== INPUT ===== */
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border:1px solid #ccc;
+    font-size:1rem;
+    margin-bottom:20px;
+    outline:none;
+    transition:border 0.3s ease;
+  }
+  input[type="text"]:focus { border-color:#6a11cb; }
+
+  /* ===== RADIO ===== */
+  .radio-group { margin-bottom:20px; }
+  .radio-group label { display:block; margin-bottom:10px; font-size:1rem; cursor:pointer; }
+  input[type="radio"] { margin-right:10px; accent-color:#6a11cb; cursor:pointer; }
+
+  /* ===== BUTTON ===== */
+  #submit {
+    padding:10px 20px;
+    font-size:1rem;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background: linear-gradient(135deg,#6a11cb,#2575fc);
+    color:#fff;
+    transition: transform 0.2s ease, background 0.3s ease;
+  }
+  #submit:hover { transform: scale(1.05); background: linear-gradient(135deg,#2575fc,#6a11cb); }
+
+  /* ===== RESULT ===== */
+  #result { margin-top:20px; font-size:1.2rem; font-weight:bold; min-height:1.5em; text-align:center; }
+
+  /* ===== THEME TOGGLE ===== */
+  .theme-toggle { margin-bottom:20px; text-align:right; }
+  .theme-toggle button {
+    padding:5px 10px;
+    border-radius:20px;
+    border:none;
+    cursor:pointer;
+    background:#6a11cb;
+    color:#fff;
+    transition: background 0.3s ease;
+  }
+  .theme-toggle button:hover { background:#2575fc; }
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:480px) {
+    input[type="text"] { width: 100%; }
+    #submit { width: 100%; }
+  }
+  .selection_group{
+    display: flex;
+    justify-content: center;
+  }
+  .output{
+    display: flex;
+    justify-content: center;
+  }
 </style>
-<body>
-    <div class="continare">
-        <form id="form">
-        <p style="font-size: 1.5em;">Temprature Conversion:</p>
-        <input style="font-size: larger; width: 40vh; " type="text" id="display"><br><br>
-        <input id="toFahrenheit" type="radio"  name="button" >
-        <label for="toFahrenheit">Celsius => Fahrenheit</label><br><br>
-        <input id="toCelsius" type="radio" name="button">
-        <label for="toCelsius">Fahrenheit => Celsius</label><br><br>
-        <input  style="margin-left: 10vh; font-size: larger; background-color: blueviolet; border-radius: 5px;" type="Submit" value="submit" id="submit">
-        <p id="result" style="margin-left: 40px; font-size: larger;"></p>
-        </form>
+</head>
+<body class="light">
+  <div class="container">
+    <div class="theme-toggle">
+      <button id="toggleTheme">🌙 Dark Mode</button>
     </div>
-    <script>
-     let display=document.getElementById("display");
-     let toFahrenheit=document.getElementById("toFahrenheit");
-     let toCelsius=document.getElementById("toCelsius");
-     let submit=document.getElementById("submit");
-     let result=document.getElementById("result");
-     let temp;
-     submit.onclick=function(event){
-        event.preventDefault();
-        let temp =Number(display.value);
-        if (isNaN(temp)) {
-        result.textContent = "Enter a valid number";
+    <h2>Temperature Converter</h2>
+    <input type="text" id="display" placeholder="Enter temperature">
+    <div class="selection_group">
+        <div class="radio-group">
+      <label><input type="radio" name="conversion" id="toFahrenheit"> Celsius → Fahrenheit</label>
+      <label><input type="radio" name="conversion" id="toCelsius"> Fahrenheit → Celsius</label>
+    </div>
+    </div>
+    <div class="output">
+        <div>
+            <input type="submit" value="Convert" id="submit">
+        </div>
+    </div>
+     <p id="result"></p>
+  </div>
+
+  <script>
+    const display = document.getElementById("display");
+    const toFahrenheit = document.getElementById("toFahrenheit");
+    const toCelsius = document.getElementById("toCelsius");
+    const submit = document.getElementById("submit");
+    const result = document.getElementById("result");
+    const toggleTheme = document.getElementById("toggleTheme");
+    const body = document.body;
+
+    submit.onclick = function(event){
+      event.preventDefault();
+      const temp = Number(display.value);
+      if (isNaN(temp)) {
+        result.textContent = "Enter a valid number!";
         return;
       }
-        if(toFahrenheit.checked){
-         result.textContent=((temp*9/5) +32 ).toFixed(2)  + " °F" ;
-        }
-        else if(toCelsius.checked){
-            result.textContent=((temp- 32) * (5/9)).toFixed(2) + " °C";
-        }
-        else{
-            result.textContent='please select conversion ';
-        }
-     }
-     
-    </script>
+      if(toFahrenheit.checked){
+        result.textContent = ((temp*9/5)+32).toFixed(2) + " °F";
+      } else if(toCelsius.checked){
+        result.textContent = ((temp-32)*(5/9)).toFixed(2) + " °C";
+      } else {
+        result.textContent = "Please select a conversion type!";
+      }
+    }
+
+    toggleTheme.onclick = function(){
+      if(body.classList.contains("light")){
+        body.classList.remove("light");
+        body.classList.add("dark");
+        toggleTheme.textContent = "☀️ Light Mode";
+      } else {
+        body.classList.remove("dark");
+        body.classList.add("light");
+        toggleTheme.textContent = "🌙 Dark Mode";
+      }
+    }
+  </script>
 </body>
 </html>
