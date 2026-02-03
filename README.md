@@ -1,43 +1,33 @@
 # Temperature-conversion
+# 🌡️ Temperature Converter
 
-Temperature-conversion
+A clean and responsive **Temperature Conversion web app** built using **HTML, CSS, and JavaScript**.  
+Easily convert between **Celsius ↔ Fahrenheit** with a modern UI and **Dark / Light mode** support.
 
-A simple Temperature Converter web app to convert between Celsius and Fahrenheit with a dark/light mode toggle.
+## ✨ Function
+• Celsius → Fahrenheit  
+• Fahrenheit → Celsius  
+• Dark 🌙 / Light ☀️ mode  
+• Responsive design  
+• Input validation  
+• Smooth UI animations  
 
-Features
+---
 
-Convert Celsius ↔ Fahrenheit
+## 🛠️ Tech Stack  
+HTML • CSS • JavaScript  
 
-Input validation for numbers
+---
 
-Alerts if conversion type is not selected
+## 🧠 Formula  
+C → F : `(C × 9/5) + 32`  
+F → C : `(F − 32) × 5/9`  
 
-Responsive and mobile-friendly
+---
 
-Smooth dark/light mode toggle
-
-How to Use
-
-Open the HTML file in a browser.
-
-Enter a temperature.
-
-Select conversion type (Celsius → Fahrenheit or vice versa).
-
-Click Convert to see the result.
-
-Toggle Dark/Light Mode using the button.
-
-Formulas
-
-Celsius → Fahrenheit: °F = (°C × 9/5) + 32
-
-Fahrenheit → Celsius: °C = (°F − 32) × 5/9
-
-Author
-
-Yehwala Obssi
-
+## 👨‍💻 Author  
+**Yehwala Obssi** — Full-Stack Web Developer
+links
 LinkedIn: linkedin.com/in/yehwala-obssi-69989136a
 
 GitHub: github.com/yeob9912
