@@ -24,7 +24,7 @@ C → F : `(C × 9/5) + 32`
 F → C : `(F − 32) × 5/9`  
 
 ---
-Live Demo : [launch app]([url](https://temperature-conversion-wdp7.vercel.app/))
+Live Demo : (https://temperature-conversion-wdp7.vercel.app/)
 
 ## 👨‍💻 Author  
 **Yehwala Obssi** — Full-Stack Web Developer
